@@ -1,0 +1,26 @@
+.navbar {
+  background: white;
+
+  padding: 1.25rem 2rem;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  border-bottom:
+    1px solid #e5e7eb;
+}
+
+.userBadge {
+  background: #eef2ff;
+
+  color: #4f46e5;
+
+  padding: 8px 14px;
+
+  border-radius: 999px;
+
+  font-weight: 600;
+}

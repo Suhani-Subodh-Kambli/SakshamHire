@@ -1,0 +1,64 @@
+/* HIGH CONTRAST */
+
+.high-contrast {
+  background: black;
+  color: white;
+}
+
+.high-contrast input,
+.high-contrast textarea,
+.high-contrast select {
+  background: black;
+  color: white;
+  border: 2px solid white;
+}
+
+.high-contrast a {
+  color: yellow;
+}
+
+/* REDUCED MOTION */
+
+.reduced-motion *,
+.reduced-motion *::before,
+.reduced-motion *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
+/* DYSLEXIA FONT */
+
+.dyslexia-font {
+  font-family:
+    Arial,
+    Verdana,
+    sans-serif;
+}
+
+/* FOCUS INDICATORS */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid #0057d9;
+  outline-offset: 3px;
+}
+
+/* RESPONSIVE ZOOM SUPPORT */
+
+html {
+  text-size-adjust: 100%;
+}
+
+/* MEDIA ACCESSIBILITY */
+
+video {
+  max-width: 100%;
+}
+
+caption {
+  font-weight: bold;
+}

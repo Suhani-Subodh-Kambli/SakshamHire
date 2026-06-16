@@ -1,0 +1,15 @@
+.card {
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: white;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.card ul {
+  padding-left: 20px;
+}
