@@ -1,10 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 import mockJobs from "../../data/mockJobs";
 import JobCard from "../../components/jobs/JobCard";
+import { rankJobs } from "../../utils/aiUtils";
 
 function JobListings() {
   const navigate = useNavigate();
+  const [rankedJobs, setRankedJobs] = useState([]);
+  const [isRanking, setIsRanking] = useState(true);
 
   const user =
     JSON.parse(
@@ -19,6 +23,17 @@ function JobListings() {
         "jobseeker_profile"
       )
     ) || {};
+
+  useEffect(() => {
+    // Simulate AI ranking process
+    const timer = setTimeout(() => {
+      const ranked = rankJobs(profile.embedding, mockJobs);
+      setRankedJobs(ranked);
+      setIsRanking(false);
+    }, 800);
+
+    return () => clearTimeout(timer);
+  }, [profile]);
 
   const handleLogout = () => {
     localStorage.removeItem(
@@ -163,7 +178,7 @@ function JobListings() {
             Discover inclusive
             opportunities matched
             to your skills and
-            accessibility needs.
+            accessibility needs via our <strong>Smart Match AI</strong>.
           </p>
 
           <div
@@ -182,16 +197,16 @@ function JobListings() {
 
         {/* Jobs */}
 
-        <h2
-          style={{
-            marginBottom:
-              "24px",
-          }}
-        >
-          Recommended Jobs
-        </h2>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+          <h2 style={{ margin: 0 }}>Recommended Jobs</h2>
+          {isRanking && (
+            <span style={{ color: '#4f46e5', fontSize: '14px', fontWeight: '500' }}>
+              ✨ AI is matching jobs...
+            </span>
+          )}
+        </div>
 
-        {mockJobs.length ===
+        {rankedJobs.length ===
         0 ? (
           <div
             style={{
@@ -205,10 +220,10 @@ function JobListings() {
                 "16px",
             }}
           >
-            No jobs available.
+            {isRanking ? "Analyzing opportunities..." : "No jobs available."}
           </div>
         ) : (
-          mockJobs.map(
+          rankedJobs.map(
             (job) => (
               <JobCard
                 key={job.id}
@@ -222,4 +237,4 @@ function JobListings() {
   );
 }
 
-export default JobListings;
+export default JobListings;
